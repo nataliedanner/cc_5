@@ -46,12 +46,15 @@ function calculateTaxes(grossPay){
 // Function for processing payroll
 
 function processPayroll(employee){
-    return console.log(`Name: ${employee.name}, Base Pay: $${calculateBasePay(employee.hourlyRate, employee.hoursWorked)}, 
-    Overtime Pay: $${calculateOvertimePay(employee.hourlyRate, employee.hoursWorked)}, 
-    Gross Pay: $${calculateBasePay(employee.hourlyRate, employee.hoursWorked) + calculateOvertimePay(employee.hourlyRate, employee.hoursWorked)},
+    return console.log(`Name: ${employee.name}
+    Base Pay: $${calculateBasePay(employee.hourlyRate, employee.hoursWorked)} 
+    Overtime Pay: $${calculateOvertimePay(employee.hourlyRate, employee.hoursWorked)}
+    Gross Pay: $${calculateBasePay(employee.hourlyRate, employee.hoursWorked) + calculateOvertimePay(employee.hourlyRate, employee.hoursWorked)}
     Net Pay: $${calculateTaxes(calculateBasePay(employee.hourlyRate, employee.hoursWorked) + calculateOvertimePay(employee.hourlyRate, employee.hoursWorked))}`)
 }
 
-processPayroll(employees[0]);
-processPayroll(employees[1]);
-processPayroll(employees[2]);
+// Log payroll for each employee
+console.log("-------Payroll for each employee-------");
+for (let employee of employees) {
+    processPayroll(employee)
+};
