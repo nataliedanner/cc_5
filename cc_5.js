@@ -5,12 +5,12 @@ let employees = [
     {
         name: "Olivia Johnson",
         hourlyRate: 30,
-        hoursWorked: 40,
+        hoursWorked: 37,
     },
      {
         name: "Rachel James",
         hourlyRate: 40,
-        hoursWorked: 45,
+        hoursWorked: 40,
     },
      {
         name: "Richard Smith",
@@ -22,7 +22,8 @@ let employees = [
 // Function for base pay
 
 function calculateBasePay(rate, hours){
-    return rate * 40
+    if (employees.hoursWorked >= 40) return rate * 40
+    else return rate * hours
 }
 
 // Function for overtime pay
@@ -34,16 +35,23 @@ function calculateOvertimePay(rate, hours){
 
 // Function deducting taxes
 
-let grossPay = calculateBasePay() + calculateOvertimePay()
+for (let employee of employees) {
+let grossPay = (calculateBasePay(employees.hourlyRate, employees.hoursWorked) + calculateOvertimePay(employees.hourlyRate, employees.hoursWorked))
+};
 function calculateTaxes(grossPay){
     return grossPay * 0.85
 }
+
 
 // Function for processing payroll
 
 function processPayroll(employee){
     return console.log(`Name: ${employee.name}, Base Pay: $${calculateBasePay(employee.hourlyRate, employee.hoursWorked)}, 
-    Overtime Pay: $${calculateOvertimePay(employee.hourlyRate, employee.hoursWorked)}, Gross Pay: $${calculateBasePay(employee.hourlyRate, employee.hoursWorked) + calculateOvertimePay(employee.hourlyRate, employee.hoursWorked)}`)
+    Overtime Pay: $${calculateOvertimePay(employee.hourlyRate, employee.hoursWorked)}, 
+    Gross Pay: $${calculateBasePay(employee.hourlyRate, employee.hoursWorked) + calculateOvertimePay(employee.hourlyRate, employee.hoursWorked)},
+    Net Pay: $${calculateTaxes(calculateBasePay(employee.hourlyRate, employee.hoursWorked) + calculateOvertimePay(employee.hourlyRate, employee.hoursWorked))}`)
 }
 
 processPayroll(employees[0]);
+processPayroll(employees[1]);
+processPayroll(employees[2]);
